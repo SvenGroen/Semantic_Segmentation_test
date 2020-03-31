@@ -1,4 +1,4 @@
-
+import torchvision.transforms as transforms
 import torch.optim as optim
 import torch.nn.functional as F
 
@@ -18,7 +18,7 @@ optimizer = optim.Adam(net.parameters(), lr=0.01)
 dataset = preprocessing.BallDataset(path)
 train_loader = DataLoader(dataset=dataset, batch_size=10)
 
-for epoch in range(3):
+for epoch in range(2):
     total_loss = 0
     batch_count = 0
     for batch in train_loader:
@@ -31,5 +31,16 @@ for epoch in range(3):
         optimizer.step()
         batch_count += 1
         total_loss += loss.item()
-        print(batch_count)
     print("epoch: {}, \t batch: {}, \t loss: {}".format(epoch, batch_count, total_loss))
+
+train_loader2 = DataLoader(dataset=dataset, batch_size=1,shuffle=True)
+img, label = next(iter(train_loader2))
+pred_img = net(img)
+img = img.squeeze(0)
+to_pil = transforms.ToPILImage()
+img = to_pil(img)
+img.show(title="loaded Image from dataset")
+
+pred_img = pred_img.squeeze(0)
+pred_img = to_pil(pred_img)
+pred_img.show(title="predicted Image")
