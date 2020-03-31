@@ -1,10 +1,6 @@
-import torch
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
-import os
 
-print(os.getcwd())
 
 
 class Ball_net(nn.Module):
@@ -52,4 +48,4 @@ class Ball_net(nn.Module):
         # x = self.deconv2(x)
         # x = self.deconv3(x)
         # x = F.softmax(x, dim=1)
-        return x
+        # return x

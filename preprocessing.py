@@ -1,12 +1,5 @@
-import sys
 import cv2
-import numpy as np
-import torch
-import torch.nn as nn
-import torchvision.transforms as T
-from torchvision import models
 from PIL import Image
-import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset
 
@@ -16,10 +9,8 @@ class BallDataset(Dataset):
     def __init__(self, path):
         self.cap = cv2.VideoCapture(path)
         self.transform = transforms.Compose([transforms.ToTensor()])
-
         self.transform_gry = transforms.Compose(
             [transforms.Grayscale(), transforms.ToTensor()])
-
         self.frames, self.labels = self.get_all_frames(self)
 
     def __len__(self):
