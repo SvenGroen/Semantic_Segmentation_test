@@ -18,7 +18,7 @@ path = "./videos/random_dot.avi"
 optimizer = optim.Adam(net.parameters(), lr=0.01)
 # criterion = nn.NLLLoss2d()
 
-dataset = preprocessing.BallDataset(path, False)
+dataset = preprocessing.BallDataset(path)
 train_loader = DataLoader(dataset=dataset, batch_size=10)
 
 for epoch in range(3):
